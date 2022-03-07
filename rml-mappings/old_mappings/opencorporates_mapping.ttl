@@ -9,7 +9,6 @@
 #            research and innovation programme under grant agreement No 780247
 ###############################################################################################
 
-#morpth-kgc
 
 # RML prefixes
 @prefix rr:       <http://www.w3.org/ns/r2rml#> .
@@ -184,11 +183,11 @@
   rml:logicalSource [
     rml:source "input.xml" ; 
     rml:referenceFormulation ql:XPath ;
-    rml:iterator "/root/results/company"
+    rml:iterator "/root/results/company/registered_address"
   ];
 
   rr:subjectMap [
-    rr:template "http://data.tbfy.eu/organisation/{jurisdiction_code}-{company_number}/registeredSite/address" ;
+    rr:template "http://data.tbfy.eu/organisation/{../jurisdiction_code}-{../company_number}/registeredSite/address" ;
     rr:class org:Site ;
     rr:class locn:Address
   ];
@@ -196,7 +195,7 @@
   rr:predicateObjectMap [
     rr:predicate org:siteAddress ;
     rr:objectMap [ 
-      rr:template "http://data.tbfy.eu/organisation/{jurisdiction_code}-{company_number}/registeredSite/address" 
+      rr:template "http://data.tbfy.eu/organisation/{../jurisdiction_code}-{../company_number}/registeredSite/address" 
     ];
   ];
 
@@ -235,7 +234,7 @@
   rr:predicateObjectMap [
     rr:predicate locn:adminUnitL1 ;
     rr:objectMap [ 
-      rr:template "http://nuts.geovocab.org/id/{tbfy_ramon_code}" 
+      rr:template "http://nuts.geovocab.org/id/{../tbfy_ramon_code}" 
     ];
   ].
 
@@ -317,53 +316,53 @@
 #    rr:template "http://{tbfy_url}" ;
 #    rr:class schema:Organization
 #  ].
-#
-#<CompanyIdentifierMap>
-#  a rr:TriplesMap ;
-#
-#  rml:logicalSource [
-#    rml:source "input.xml" ; 
-#    rml:referenceFormulation ql:XPath ;
-#    rml:iterator "/root/results/company"
-#  ];
-#
-#  rr:subjectMap [
-#    rr:template "http://data.tbfy.eu/organisation/{jurisdiction_code}-{company_number}/id/OpenCorporates" ;
-#    rr:class adms:Identifier
-#  ];
-#
-#  rr:predicateObjectMap [
-#    rr:predicate skos:notation;
-#    rr:objectMap [
-#      rml:reference "tbfy_company_identifier_notation"
-#    ]
-#  ];
-#
-#  rr:predicateObjectMap [
-#    rr:predicate dct:creator ;
-#    rr:objectMap [ 
-#      rr:template "https://opencorporates.com" 
-#    ]
-#  ];
-#
-#  rr:predicateObjectMap [
-#    rr:predicate dct:isPartOf ;
-#    rr:objectMap [ 
-#      rr:template "http://data.tbfy.eu/identifierSystem/OpenCorporates" 
-#    ];
-#  ].
-#
+
+<CompanyIdentifierMap>
+  a rr:TriplesMap ;
+
+  rml:logicalSource [
+    rml:source "input.xml" ; 
+    rml:referenceFormulation ql:XPath ;
+    rml:iterator "/root/results/company"
+  ];
+
+  rr:subjectMap [
+    rr:template "http://data.tbfy.eu/organisation/{jurisdiction_code}-{company_number}/id/OpenCorporates" ;
+    rr:class adms:Identifier
+  ];
+
+  rr:predicateObjectMap [
+    rr:predicate skos:notation;
+    rr:objectMap [
+      rml:reference "tbfy_company_identifier_notation"
+    ]
+  ];
+
+  rr:predicateObjectMap [
+    rr:predicate dct:creator ;
+    rr:objectMap [ 
+      rr:template "https://opencorporates.com" 
+    ]
+  ];
+
+  rr:predicateObjectMap [
+    rr:predicate dct:isPartOf ;
+    rr:objectMap [ 
+      rr:template "http://data.tbfy.eu/identifierSystem/OpenCorporates" 
+    ];
+  ].
+
 <CompanyOfficerMap>
   a rr:TriplesMap ;
 
   rml:logicalSource [
     rml:source "input.xml" ; 
     rml:referenceFormulation ql:XPath ;
-    rml:iterator "/root/results/company" ;
+    rml:iterator "/root/results/company/officers/officer" ;
   ];
 
   rr:subjectMap [
-    rr:template "http://data.tbfy.eu/organisation/{jurisdiction_code}-{company_number}/officer/{officers/officer/id}" ;
+    rr:template "http://data.tbfy.eu/organisation/{../../jurisdiction_code}-{../../company_number}/officer/{id}" ;
     rr:class org:Membership ;
   ];
 
@@ -378,21 +377,21 @@
   rr:predicateObjectMap [
     rr:predicate org:memberDuring ;
     rr:objectMap [
-      rr:template "http://data.tbfy.eu/organisation/{jurisdiction_code}-{company_number}/officer/{officers/officer/id}/interval" 
+      rr:template "http://data.tbfy.eu/organisation/{../../jurisdiction_code}-{../../company_number}/officer/{id}/interval" 
     ]
   ];
 
   rr:predicateObjectMap [
     rr:predicate org:organization ;
     rr:objectMap [
-      rr:template "http://data.tbfy.eu/organisation/{jurisdiction_code}-{company_number}" 
+      rr:template "http://data.tbfy.eu/organisation/{../../jurisdiction_code}-{../../company_number}" 
     ]
   ];
 
   rr:predicateObjectMap [
     rr:predicate org:member ;
     rr:objectMap [
-      rr:template "http://data.tbfy.eu/officer/OpenCorporates/{officers/officer/id}" 
+      rr:template "http://data.tbfy.eu/officer/OpenCorporates/{id}" 
     ]
   ].
 
@@ -402,25 +401,25 @@
   rml:logicalSource [
     rml:source "input.xml" ; 
     rml:referenceFormulation ql:XPath ;
-    rml:iterator "/root/results/company"
+    rml:iterator "/root/results/company/officers/officer"
   ];
 
   rr:subjectMap [
-    rr:template "http://data.tbfy.eu/organisation/{jurisdiction_code}-{company_number}/officer/{officers/officer/id}/interval" ;
+    rr:template "http://data.tbfy.eu/organisation/{../../jurisdiction_code}-{../../company_number}/officer/{id}/interval" ;
     rr:class time:Interval
   ];
 
   rr:predicateObjectMap [
     rr:predicate time:hasBeginning ;
     rr:objectMap [
-      rr:template "http://data.tbfy.eu/organisation/{jurisdiction_code}-{company_number}/officer/{officers/officer/id}/interval/beginning" 
+      rr:template "http://data.tbfy.eu/organisation/{../../jurisdiction_code}-{../../company_number}/officer/{id}/interval/beginning" 
     ]
   ];
 
   rr:predicateObjectMap [
     rr:predicate time:hasEnd ;
     rr:objectMap [
-      rr:template "http://data.tbfy.eu/organisation/{jurisdiction_code}-{company_number}/officer/{officers/officer/id}/end" 
+      rr:template "http://data.tbfy.eu/organisation/{../../jurisdiction_code}-{../../company_number}/officer/{id}/end" 
     ]
   ].
 
@@ -430,11 +429,11 @@
   rml:logicalSource [
     rml:source "input.xml" ; 
     rml:referenceFormulation ql:XPath ;
-    rml:iterator "/root/results/company"
+    rml:iterator "/root/results/company/officers/officer"
   ];
 
   rr:subjectMap [
-    rr:template "http://data.tbfy.eu/organisation/{jurisdiction_code}-{company_number}/officer/{officers/officer/id}/interval/beginning" ;
+    rr:template "http://data.tbfy.eu/organisation/{../../jurisdiction_code}-{../../company_number}/officer/{id}/interval/beginning" ;
     rr:class time:Instant
   ];
 
@@ -452,11 +451,11 @@
   rml:logicalSource [
     rml:source "input.xml" ; 
     rml:referenceFormulation ql:XPath ;
-    rml:iterator "/root/results/company"
+    rml:iterator "/root/results/company/officers/officer"
   ];
 
   rr:subjectMap [
-    rr:template "http://data.tbfy.eu/organisation/{jurisdiction_code}-{company_number}/officer/{officers/officer/id}/interval/end" ;
+    rr:template "http://data.tbfy.eu/organisation/{../../jurisdiction_code}-{../../company_number}/officer/{id}/interval/end" ;
     rr:class time:Instant
   ];
 
