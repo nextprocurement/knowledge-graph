@@ -12,6 +12,12 @@
 # Funding  : TheyBuyForYou has received funding from the European Union's Horizon 2020
 #            research and innovation programme under grant agreement No 780247
 #####################################################################################################
+import socket 
+import os
+
+
+VAR_NAME = os.environ['FUSEKI_PLATFORM_IP']
+ip = socket.gethostbyname(VAR_NAME)
 
 logging = {
     "level": "INFO"
@@ -48,7 +54,7 @@ jena_tools = {
 
 jena_fuseki = {
     #"fuseki_url": "http://52.19.213.234:3030", 
-    "fuseki_url": "http://127.0.0.1:3030",
+    "fuseki_url": "http://" + ip + ":3030", 
     "dataset": "tbfy",
     "fuseki_url_norwegian": "http://52.19.213.234:3030", 
     "dataset_norwegian": "tbfy"
