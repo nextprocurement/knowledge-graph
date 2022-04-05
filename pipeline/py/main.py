@@ -6,7 +6,10 @@ from publish_rdf import publish_rdfAPI
 import uvicorn
 import shutil
 from pathlib import Path
+import os
 
+API_PORT = os.environ['API_PORT']
+LOG_LEVEL = os.environ['LOG_LEVEL']
 
 app = FastAPI()
 
@@ -45,7 +48,7 @@ def read_item(start_date: str, end_date: str, input_folder:str):
     return {"final value": value}
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=5000, log_level="info")
+    uvicorn.run("main:app", host="0.0.0.0", port=API_PORT, log_level=LOG_LEVEL)
 
 
 # '2019-01-01'
