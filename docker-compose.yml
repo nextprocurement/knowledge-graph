@@ -3,7 +3,7 @@ version: '3.7'
 x-common-variables:
   - &common_environment_variables
     API_PORT: 5050
-    FUSEKI_PLATFORM_IP: 'fuseki'
+    PLATFORM_IP: 'fuseki'
     LOG_DIR: "/mnt/log"
     LOG_LEVEL: "info"
     LOG4J_FORMAT_MSG_NO_LOOKUPS: "true"

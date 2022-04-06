@@ -16,7 +16,7 @@ import socket
 import os
 
 
-VAR_NAME = os.environ['FUSEKI_PLATFORM_IP']
+VAR_NAME = os.environ['PLATFORM_IP']
 ip = socket.gethostbyname(VAR_NAME)
 
 logging = {
