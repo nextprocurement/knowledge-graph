@@ -1,32 +1,40 @@
-# Pipeline de procesamiento Next Procurement
+# Next Procurement processing pipeline
 
-En este git se encuentra el proyecto para la creación de una pipeline para el procesamiento de datos de licitaciones públicas de plataformas como TED y PLACE para su transformación a grafos de conocimiento. Para lograrlo, se ha recuperado parte del trabajo realizado en el proyecto They Buy For You (TBFY). 
+In this git is the project for the creation of a pipeline for the processing of public tender data from platforms such as TED and PLACE for its transformation to knowledge graphs. To achieve this, part of the work done in the They Buy For You (TBFY) project has been recovered. 
 
-Este proceso se ha encapsulado por completo en un contenedor de docker. Se pueden definir con libertad algunos de los valores principales como el endpoint de la pipeline, el puerto de la API, etc en el dokcer-compose.yaml. Otros valores como las reglas para el mapeado del grafo son también fácilmente accesibles.
+This process has been completely encapsulated in a docker container. Some of the main values such as pipeline endpoint, API port, etc. can be freely defined in the dokcer-compose.yaml. Other values such as the rules for the network mapping are also easily accessible.
 
-El proyecto cuenta con un entrypoint en forma de API, a través del cual pueden enviarse todas las peticiones para el procesamiento de los datos, asi como proporcionar los archivos para su procesamiento.
+The project has an entrypoint in the form of an API, through which all requests for data processing can be sent, as well as providing the files for processing.
 
-## Instalación
+Translated with DeepL.com (free version)
 
-La instalación requiere previamente la instalación de docker.
+## InstalaInstallationción
+
+The installation previously requires the installation of docker.
 
 ```
 https://docs.docker.com/compose/install/
 ```
 
-Una vez instalado docker, el proyecto se despliega con el comando 
+Once docker is installed, the project is deployed with the command
 
 ```bash
 docker-compose up --build -d 
 ```
 
-en el directorio raiz del proyecto.
+in the root directory of the project.
 
-## Utilización
+## Usage
 
-Para la utilización de la pipeline será necesario que el endpoint donde se desean desplegar los documentos del grafo de conocimiento este operativo. si no se modifica el valor de la variable de entorno PLATFORM_IP la pipeline buscará en localhost el servicio de fuseki para la publicación de los datos, y no se desplegará si no encuentra el servicio. 
+If the value of the PLATFORM_IP environment variable is not modified, the pipeline will search in localhost for the fuseki service to publish the data, and it will not be deployed if it does not find the service. 
 
-Una vez desplegado correctamente, se puede acceder a la interfaz de la api en localhost:5050. Ahí viene toda la información relativa a la utilización de la API.
+Once successfully deployed, the api interface can be accessed at localhost:5050. There you will find all the information about how to use the API.
 
-## Licencia
-por confirmar.
+## Acknowledgements
+
+This work has received funding from the NextProcurement European Action (grant agreement INEA/CEF/ICT/A2020/2373713-Action 2020-ES-IA-0255).
+
+<p align="center">
+  <img src="static/Images/eu-logo.svg" alt="EU Logo" height=100 width="200" style="margin-right: -27px;">
+  <img src="static/Images/nextprocurement-logo.png" alt="Next Procurement Logo" height=100 width="200">
+</p>
