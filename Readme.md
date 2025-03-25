@@ -8,7 +8,7 @@ The project has an entrypoint in the form of an API, through which all requests 
 
 Translated with DeepL.com (free version)
 
-## InstalaInstallationción
+## Installation
 
 The installation previously requires the installation of docker.
 
